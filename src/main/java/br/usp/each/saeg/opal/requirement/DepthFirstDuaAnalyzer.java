@@ -52,7 +52,7 @@ public class DepthFirstDuaAnalyzer implements Analyzer {
 			if (j.isCUse(var)) {
 				list.add(new Dua(i.id, new CUse(j.id), var));
 			}
-			if (j.isPUse(var)) {
+			if (j.isPUse(var) && !j.isDef(var)) {
 				for (final Block succ : graph.neighbors(j.id)) {
 					list.add(new Dua(i.id, new PUse(j.id, succ.id), var));
 				}
