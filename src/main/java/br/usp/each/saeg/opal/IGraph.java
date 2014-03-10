@@ -4,22 +4,22 @@ import java.util.Set;
 
 public interface IGraph<K> extends Iterable<K> {
 
-	K get(int id);
+    K get(int id);
 
-	boolean add(K k);
+    boolean add(K k);
 
-	boolean remove(int id);
+    boolean remove(int id);
 
-	boolean adjacent(int from, int to);
+    boolean adjacent(int from, int to);
 
-	Set<K> neighbors(int id);
+    Set<K> neighbors(int id);
 
-	boolean addEdge(int from, int to);
+    boolean addEdge(int from, int to);
 
-	boolean removeEdge(int from, int to);
+    boolean removeEdge(int from, int to);
 
-	IGraph<K> inverse();
+    IGraph<K> inverse();
 
-	int size();
+    int size();
 
 }

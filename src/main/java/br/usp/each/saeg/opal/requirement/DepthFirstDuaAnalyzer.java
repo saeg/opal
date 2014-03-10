@@ -11,64 +11,64 @@ import br.usp.each.saeg.opal.Graph;
 
 public class DepthFirstDuaAnalyzer implements Analyzer {
 
-	private Graph<Block> graph;
+    private Graph<Block> graph;
 
-	@Override
-	public Dua[] analyze(final Graph<Block> graph, final int vars) {
-		this.graph = graph;
-		final List<Dua> list = new ArrayList<Dua>();
-		for (final Block block : graph) {
-			final BitSetIterator it = block.defs();
-			while (it.hasNext()) {
-				DFS(it.next(), block, list);
-			}
-		}
-		return list.toArray(new Dua[list.size()]);
-	}
+    @Override
+    public Dua[] analyze(final Graph<Block> graph, final int vars) {
+        this.graph = graph;
+        final List<Dua> list = new ArrayList<Dua>();
+        for (final Block block : graph) {
+            final BitSetIterator it = block.defs();
+            while (it.hasNext()) {
+                DFS(it.next(), block, list);
+            }
+        }
+        return list.toArray(new Dua[list.size()]);
+    }
 
-	/*
-	 * The search visits every block j which is syntactically reachable from i
-	 * by some definition-clear path.
-	 */
-	private void DFS(final int var, final Block i, final List<Dua> list) {
-		final Set<Integer> queued = new HashSet<Integer>();
-		final Block[] queue = new Block[graph.size()];
-		int top = 0;
-		for (final Block succ : graph.neighbors(i.id)) {
-			queue[top++] = succ;
-			queued.add(succ.id);
-			if (i.isPUse(var)) {
-				list.add(new Dua(i.id, new PUse(i.id, succ.id), var));
-			}
-		}
-		while (top > 0) {
+    /*
+     * The search visits every block j which is syntactically reachable from i
+     * by some definition-clear path.
+     */
+    private void DFS(final int var, final Block i, final List<Dua> list) {
+        final Set<Integer> queued = new HashSet<Integer>();
+        final Block[] queue = new Block[graph.size()];
+        int top = 0;
+        for (final Block succ : graph.neighbors(i.id)) {
+            queue[top++] = succ;
+            queued.add(succ.id);
+            if (i.isPUse(var)) {
+                list.add(new Dua(i.id, new PUse(i.id, succ.id), var));
+            }
+        }
+        while (top > 0) {
 
-			final Block j = queue[--top];
+            final Block j = queue[--top];
 
-			// is not necessary remove queued mark (since a node is visited only
-			// once). We use the queued mark to indicate that a node has already
-			// been visited or will be visited soon.
+            // is not necessary remove queued mark (since a node is visited only
+            // once). We use the queued mark to indicate that a node has already
+            // been visited or will be visited soon.
 
-			if (j.isCUse(var)) {
-				list.add(new Dua(i.id, new CUse(j.id), var));
-			}
-			if (j.isPUse(var) && !j.isDef(var)) {
-				for (final Block succ : graph.neighbors(j.id)) {
-					list.add(new Dua(i.id, new PUse(j.id, succ.id), var));
-				}
-			}
-			if (j.isDef(var)) {
-				// backtrack
-				continue;
-			}
+            if (j.isCUse(var)) {
+                list.add(new Dua(i.id, new CUse(j.id), var));
+            }
+            if (j.isPUse(var) && !j.isDef(var)) {
+                for (final Block succ : graph.neighbors(j.id)) {
+                    list.add(new Dua(i.id, new PUse(j.id, succ.id), var));
+                }
+            }
+            if (j.isDef(var)) {
+                // backtrack
+                continue;
+            }
 
-			for (final Block succ : graph.neighbors(j.id)) {
-				if (!queued.contains(succ.id)) {
-					queue[top++] = succ;
-					queued.add(succ.id);
-				}
-			}
-		}
-	}
+            for (final Block succ : graph.neighbors(j.id)) {
+                if (!queued.contains(succ.id)) {
+                    queue[top++] = succ;
+                    queued.add(succ.id);
+                }
+            }
+        }
+    }
 
 }

@@ -5,6 +5,6 @@ import br.usp.each.saeg.opal.Graph;
 
 public interface Analyzer {
 
-	Requirement[] analyze(Graph<Block> graph, int vars);
+    Requirement[] analyze(Graph<Block> graph, int vars);
 
 }

@@ -6,22 +6,22 @@ import org.junit.Test;
 
 public class RequirementTest {
 
-	private Requirement requirement;
+    private Requirement requirement;
 
-	@Before
-	public void setUp() {
-		requirement = new Requirement();
-	}
+    @Before
+    public void setUp() {
+        requirement = new Requirement();
+    }
 
-	@Test
-	public void testNewlyCreatedRequirementIsNotCovered() {
-		Assert.assertFalse(requirement.isCovered());
-	}
+    @Test
+    public void testNewlyCreatedRequirementIsNotCovered() {
+        Assert.assertFalse(requirement.isCovered());
+    }
 
-	@Test
-	public void testCover() {
-		requirement.cover();
-		Assert.assertTrue(requirement.isCovered());
-	}
+    @Test
+    public void testCover() {
+        requirement.cover();
+        Assert.assertTrue(requirement.isCovered());
+    }
 
 }

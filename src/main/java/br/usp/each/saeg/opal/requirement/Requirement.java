@@ -2,18 +2,18 @@ package br.usp.each.saeg.opal.requirement;
 
 public class Requirement {
 
-	private boolean covered;
+    private boolean covered;
 
-	public Requirement() {
-		covered = false;
-	}
+    public Requirement() {
+        covered = false;
+    }
 
-	public void cover() {
-		covered = true;
-	}
+    public void cover() {
+        covered = true;
+    }
 
-	public boolean isCovered() {
-		return covered;
-	}
+    public boolean isCovered() {
+        return covered;
+    }
 
 }

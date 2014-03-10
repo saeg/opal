@@ -11,23 +11,23 @@ import br.usp.each.saeg.opal.Block;
 
 public class TestAIfStatementNodesShould extends AIfStatement {
 
-	private Node[] nodes;
+    private Node[] nodes;
 
-	@Before
-	public void init() {
-		nodes = new NodeAnalyzer().analyze(statement, 0);
-	}
+    @Before
+    public void init() {
+        nodes = new NodeAnalyzer().analyze(statement, 0);
+    }
 
-	@Test
-	public void haveThreeNodes() {
-		Assert.assertEquals(3, nodes.length);
-	}
+    @Test
+    public void haveThreeNodes() {
+        Assert.assertEquals(3, nodes.length);
+    }
 
-	@Test
-	public void haveANodeForEachBlockWithSameId() {
-		for (final Block block : statement) {
-			Assert.assertTrue(contains(node(block.id), nodes));
-		}
-	}
+    @Test
+    public void haveANodeForEachBlockWithSameId() {
+        for (final Block block : statement) {
+            Assert.assertTrue(contains(node(block.id), nodes));
+        }
+    }
 
 }
