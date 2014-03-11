@@ -5,6 +5,7 @@
 	<version>0.0.3-SNAPSHOT</version>
 	<name>OPAL</name>
 	<url>https://github.com/saeg/opal</url>
+	<description>OPAL - Open-source Program Analysis Library</description>
 
 	<scm>
 		<url>https://github.com/saeg/opal</url>
