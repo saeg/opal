@@ -97,7 +97,7 @@
 		<dependency>
 			<groupId>br.usp.each.saeg</groupId>
 			<artifactId>saeg-commons</artifactId>
-			<version>0.0.3</version>
+			<version>0.0.4</version>
 		</dependency>
 	</dependencies>
 
