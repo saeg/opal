@@ -9,7 +9,7 @@
 
 	<groupId>br.usp.each.saeg</groupId>
 	<artifactId>opal</artifactId>
-	<version>0.0.4-SNAPSHOT</version>
+	<version>0.0.4</version>
 	<packaging>jar</packaging>
 	<name>OPAL</name>
 	<url>https://github.com/saeg/opal</url>
@@ -28,7 +28,7 @@
 		<url>https://github.com/saeg/opal</url>
 		<connection>scm:git:https://github.com/saeg/opal.git</connection>
 		<developerConnection>scm:git:git@github.com:saeg/opal.git</developerConnection>
-		<tag>HEAD</tag>
+		<tag>opal-0.0.4</tag>
 	</scm>
 
 <!--
