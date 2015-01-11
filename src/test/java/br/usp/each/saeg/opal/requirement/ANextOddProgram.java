@@ -29,60 +29,42 @@
  */
 package br.usp.each.saeg.opal.requirement;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.junit.Before;
 
 import br.usp.each.saeg.opal.Block;
-import br.usp.each.saeg.opal.Graph;
+import br.usp.each.saeg.opal.Program;
 
 public abstract class ANextOddProgram {
 
-    private Graph<Block> graph;
-
-    private Map<String, Integer> variables;
+    protected Program program;
 
     @Before
     public void setUp() {
-        graph = new Graph<Block>();
-        variables = new HashMap<String, Integer>();
+        program = new Program();
 
         final Block b0 = new Block(0);
         final Block b1 = new Block(1);
         final Block b2 = new Block(2);
 
-        graph.add(b0);
-        graph.add(b1);
-        graph.add(b2);
-        graph.addEdge(0, 1);
-        graph.addEdge(0, 2);
-        graph.addEdge(1, 2);
-        variables.put("x", 0);
+        program.getGraph().add(b0);
+        program.getGraph().add(b1);
+        program.getGraph().add(b2);
+        program.getGraph().addEdge(0, 1);
+        program.getGraph().addEdge(0, 2);
+        program.getGraph().addEdge(1, 2);
+        program.addVariable("x", 0);
 
         // Block 0 defines variable x
-        b0.def(variable("x"));
-        b0.puse(variable("x")); // If on Block 0
+        b0.def(program.variable("x"));
+        b0.puse(program.variable("x")); // If on Block 0
 
         // x = x + 1
-        b1.cuse(variable("x"));
-        b1.def(variable("x"));
+        b1.cuse(program.variable("x"));
+        b1.def(program.variable("x"));
 
         // x = x + 1
-        b2.cuse(variable("x"));
-        b2.def(variable("x"));
-    }
-
-    public Graph<Block> getGraph() {
-        return graph;
-    }
-
-    public int variable(final String name) {
-        return variables.get(name);
-    }
-
-    public int numOfVariables() {
-        return variables.size();
+        b2.cuse(program.variable("x"));
+        b2.def(program.variable("x"));
     }
 
 }

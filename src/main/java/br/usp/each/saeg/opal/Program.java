@@ -27,53 +27,31 @@
  * ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF
  * THE POSSIBILITY OF SUCH DAMAGE.
  */
-package br.usp.each.saeg.opal.requirement;
+package br.usp.each.saeg.opal;
 
-import static br.usp.each.saeg.opal.requirement.Util.cdua;
-import static br.usp.each.saeg.opal.requirement.Util.contains;
-import static br.usp.each.saeg.opal.requirement.Util.pdua;
+import java.util.HashMap;
+import java.util.Map;
 
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+public class Program {
 
-public class TestNextOddProgramDuasShould extends ANextOddProgram {
+    private final Graph<Block> graph = new Graph<Block>();
 
-    private Dua[] duas;
+    private final Map<String, Integer> variables = new HashMap<String, Integer>();
 
-    @Before
-    public void init() {
-        duas = new DepthFirstDuaAnalyzer().analyze(program.getGraph(), program.numOfVariables());
+    public Graph<Block> getGraph() {
+        return graph;
     }
 
-    @Test
-    public void haveFiveDuas() {
-        Assert.assertEquals(5, duas.length);
+    public int variable(final String name) {
+        return variables.get(name);
     }
 
-    @Test
-    public void haveAnDefinitionAt0AndUseAt1OfVariableX() {
-        Assert.assertTrue(contains(cdua(0, 1, program.variable("x")), duas));
+    public int numOfVariables() {
+        return variables.size();
     }
 
-    @Test
-    public void haveAnDefinitionAt1AndUseAt2OfVariableX() {
-        Assert.assertTrue(contains(cdua(1, 2, program.variable("x")), duas));
-    }
-
-    @Test
-    public void haveAnDefinitionAt0AndUseAt2OfVariableX() {
-        Assert.assertTrue(contains(cdua(0, 2, program.variable("x")), duas));
-    }
-
-    @Test
-    public void haveAnDefinitionAt0AndUseAt0To2OfVariableX() {
-        Assert.assertTrue(contains(pdua(0, 0, 2, program.variable("x")), duas));
-    }
-
-    @Test
-    public void haveAnDefinitionAt0AndUseAt0To1OfVariableX() {
-        Assert.assertTrue(contains(pdua(0, 0, 1, program.variable("x")), duas));
+    public void addVariable(final String name, final int id) {
+        variables.put(name, id);
     }
 
 }

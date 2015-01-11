@@ -43,7 +43,7 @@ public class TestMaxProgramDuasShould extends AMaxProgram {
 
     @Before
     public void init() {
-        duas = new DepthFirstDuaAnalyzer().analyze(getGraph(), numOfVariables());
+        duas = new DepthFirstDuaAnalyzer().analyze(program.getGraph(), program.numOfVariables());
     }
 
     @Test
@@ -53,117 +53,117 @@ public class TestMaxProgramDuasShould extends AMaxProgram {
 
     @Test
     public void haveAnDefinitionAt0AndUseAt5OfVariableMax() {
-        Assert.assertTrue(contains(cdua(0, 5, variable("max")), duas));
+        Assert.assertTrue(contains(cdua(0, 5, program.variable("max")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt4AndUseAt2To3OfVariableI() {
-        Assert.assertTrue(contains(pdua(4, 2, 3, variable("i")), duas));
+        Assert.assertTrue(contains(pdua(4, 2, 3, program.variable("i")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt4AndUseAt2To4OfVariableI() {
-        Assert.assertTrue(contains(pdua(4, 2, 4, variable("i")), duas));
+        Assert.assertTrue(contains(pdua(4, 2, 4, program.variable("i")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt3AndUseAt2To3OfVariableMax() {
-        Assert.assertTrue(contains(pdua(3, 2, 3, variable("max")), duas));
+        Assert.assertTrue(contains(pdua(3, 2, 3, program.variable("max")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt3AndUseAt2To4OfVariableMax() {
-        Assert.assertTrue(contains(pdua(3, 2, 4, variable("max")), duas));
+        Assert.assertTrue(contains(pdua(3, 2, 4, program.variable("max")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt0AndUseAt2To4OfVariableMax() {
-        Assert.assertTrue(contains(pdua(0, 2, 4, variable("max")), duas));
+        Assert.assertTrue(contains(pdua(0, 2, 4, program.variable("max")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt0AndUseAt2To3OfVariableMax() {
-        Assert.assertTrue(contains(pdua(0, 2, 3, variable("max")), duas));
+        Assert.assertTrue(contains(pdua(0, 2, 3, program.variable("max")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt0AndUseAt2To3OfVariableI() {
-        Assert.assertTrue(contains(pdua(0, 2, 3, variable("i")), duas));
+        Assert.assertTrue(contains(pdua(0, 2, 3, program.variable("i")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt0AndUseAt2To4OfVariableI() {
-        Assert.assertTrue(contains(pdua(0, 2, 4, variable("i")), duas));
+        Assert.assertTrue(contains(pdua(0, 2, 4, program.variable("i")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt0AndUseAt2To4OfVariableArray() {
-        Assert.assertTrue(contains(pdua(0, 2, 4, variable("array")), duas));
+        Assert.assertTrue(contains(pdua(0, 2, 4, program.variable("array")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt0AndUseAt2To3OfVariableArray() {
-        Assert.assertTrue(contains(pdua(0, 2, 3, variable("array")), duas));
+        Assert.assertTrue(contains(pdua(0, 2, 3, program.variable("array")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt4AndUseAt1To5OfVariableI() {
-        Assert.assertTrue(contains(pdua(4, 1, 5, variable("i")), duas));
+        Assert.assertTrue(contains(pdua(4, 1, 5, program.variable("i")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt4AndUseAt1To2OfVariableI() {
-        Assert.assertTrue(contains(pdua(4, 1, 2, variable("i")), duas));
+        Assert.assertTrue(contains(pdua(4, 1, 2, program.variable("i")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt0AndUseAt1To5OfVariableI() {
-        Assert.assertTrue(contains(pdua(0, 1, 5, variable("i")), duas));
+        Assert.assertTrue(contains(pdua(0, 1, 5, program.variable("i")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt0AndUseAt1To2OfVariableI() {
-        Assert.assertTrue(contains(pdua(0, 1, 2, variable("i")), duas));
+        Assert.assertTrue(contains(pdua(0, 1, 2, program.variable("i")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt0AndUseAt1To5OfVariableArray() {
-        Assert.assertTrue(contains(pdua(0, 1, 5, variable("length")), duas));
+        Assert.assertTrue(contains(pdua(0, 1, 5, program.variable("length")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt0AndUseAt1To2OfVariableArray() {
-        Assert.assertTrue(contains(pdua(0, 1, 2, variable("length")), duas));
+        Assert.assertTrue(contains(pdua(0, 1, 2, program.variable("length")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt4AndUseAt3OfVariableI() {
-        Assert.assertTrue(contains(cdua(4, 3, variable("i")), duas));
+        Assert.assertTrue(contains(cdua(4, 3, program.variable("i")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt0AndUseAt4OfVariableI() {
-        Assert.assertTrue(contains(cdua(0, 4, variable("i")), duas));
+        Assert.assertTrue(contains(cdua(0, 4, program.variable("i")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt0AndUseAt3OfVariableI() {
-        Assert.assertTrue(contains(cdua(0, 3, variable("i")), duas));
+        Assert.assertTrue(contains(cdua(0, 3, program.variable("i")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt0AndUseAt3OfVariableArray() {
-        Assert.assertTrue(contains(cdua(0, 3, variable("array")), duas));
+        Assert.assertTrue(contains(cdua(0, 3, program.variable("array")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt3AndUseAt5OfVariableMax() {
-        Assert.assertTrue(contains(cdua(3, 5, variable("max")), duas));
+        Assert.assertTrue(contains(cdua(3, 5, program.variable("max")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt4AndUseAt4OfVariableI() {
-        Assert.assertTrue(contains(cdua(4, 4, variable("i")), duas));
+        Assert.assertTrue(contains(cdua(4, 4, program.variable("i")), duas));
     }
 
 }

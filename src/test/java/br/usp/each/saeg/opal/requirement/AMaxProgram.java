@@ -29,24 +29,18 @@
  */
 package br.usp.each.saeg.opal.requirement;
 
-import java.util.HashMap;
-import java.util.Map;
-
 import org.junit.Before;
 
 import br.usp.each.saeg.opal.Block;
-import br.usp.each.saeg.opal.Graph;
+import br.usp.each.saeg.opal.Program;
 
 public abstract class AMaxProgram {
 
-    private Graph<Block> graph;
-
-    private Map<String, Integer> variables;
+    protected Program program;
 
     @Before
     public void setUp() {
-        graph = new Graph<Block>();
-        variables = new HashMap<String, Integer>();
+        program = new Program();
 
         final Block b0 = new Block(0);
         final Block b1 = new Block(1);
@@ -55,64 +49,52 @@ public abstract class AMaxProgram {
         final Block b4 = new Block(4);
         final Block b5 = new Block(5);
 
-        graph.add(b0);
-        graph.add(b1);
-        graph.add(b2);
-        graph.add(b3);
-        graph.add(b4);
-        graph.add(b5);
-        graph.addEdge(0, 1);
-        graph.addEdge(1, 2);
-        graph.addEdge(1, 5);
-        graph.addEdge(2, 3);
-        graph.addEdge(2, 4);
-        graph.addEdge(3, 4);
-        graph.addEdge(4, 1);
-        variables.put("array", 0);
-        variables.put("length", 1);
-        variables.put("i", 2);
-        variables.put("max", 3);
+        program.getGraph().add(b0);
+        program.getGraph().add(b1);
+        program.getGraph().add(b2);
+        program.getGraph().add(b3);
+        program.getGraph().add(b4);
+        program.getGraph().add(b5);
+        program.getGraph().addEdge(0, 1);
+        program.getGraph().addEdge(1, 2);
+        program.getGraph().addEdge(1, 5);
+        program.getGraph().addEdge(2, 3);
+        program.getGraph().addEdge(2, 4);
+        program.getGraph().addEdge(3, 4);
+        program.getGraph().addEdge(4, 1);
+        program.addVariable("array", 0);
+        program.addVariable("length", 1);
+        program.addVariable("i", 2);
+        program.addVariable("max", 3);
 
         /*
          * public static int max(int[] array, int length) int i = 0 int max = array[i++]
          */
-        b0.def(variable("array"));
-        b0.def(variable("length"));
-        b0.def(variable("i"));
-        b0.def(variable("max"));
+        b0.def(program.variable("array"));
+        b0.def(program.variable("length"));
+        b0.def(program.variable("i"));
+        b0.def(program.variable("max"));
 
         // while (i < length)
-        b1.puse(variable("i"));
-        b1.puse(variable("length"));
+        b1.puse(program.variable("i"));
+        b1.puse(program.variable("length"));
 
         // if (array[i] > max)
-        b2.puse(variable("array"));
-        b2.puse(variable("i"));
-        b2.puse(variable("max"));
+        b2.puse(program.variable("array"));
+        b2.puse(program.variable("i"));
+        b2.puse(program.variable("max"));
 
         // max = array[i]
-        b3.def(variable("max"));
-        b3.cuse(variable("array"));
-        b3.cuse(variable("i"));
+        b3.def(program.variable("max"));
+        b3.cuse(program.variable("array"));
+        b3.cuse(program.variable("i"));
 
         // i = i + 1
-        b4.def(variable("i"));
-        b4.cuse(variable("i"));
+        b4.def(program.variable("i"));
+        b4.cuse(program.variable("i"));
 
         // return max
-        b5.cuse(variable("max"));
-    }
-
-    public Graph<Block> getGraph() {
-        return graph;
-    }
-
-    public int variable(final String name) {
-        return variables.get(name);
-    }
-
-    public int numOfVariables() {
-        return variables.size();
+        b5.cuse(program.variable("max"));
     }
 
 }
