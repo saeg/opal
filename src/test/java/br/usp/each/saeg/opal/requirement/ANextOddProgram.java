@@ -39,40 +39,50 @@ import br.usp.each.saeg.opal.Graph;
 
 public abstract class ANextOddProgram {
 
-    protected Graph<Block> program;
+    private Graph<Block> graph;
 
-    protected Map<String, Integer> variables;
+    private Map<String, Integer> variables;
 
     @Before
     public void setUp() {
-        program = new Graph<Block>();
+        graph = new Graph<Block>();
         variables = new HashMap<String, Integer>();
 
         final Block b0 = new Block(0);
         final Block b1 = new Block(1);
         final Block b2 = new Block(2);
 
-        program.add(b0);
-        program.add(b1);
-        program.add(b2);
-        program.addEdge(0, 1);
-        program.addEdge(0, 2);
-        program.addEdge(1, 2);
-        variables.put("this", 0);
-        variables.put("x", 1);
+        graph.add(b0);
+        graph.add(b1);
+        graph.add(b2);
+        graph.addEdge(0, 1);
+        graph.addEdge(0, 2);
+        graph.addEdge(1, 2);
+        variables.put("x", 0);
 
-        // Block 0 set var x (Parameter) and this.
-        b0.def(0);
-        b0.def(1);
-        b0.puse(1); // If on Block 0
+        // Block 0 defines variable x
+        b0.def(variable("x"));
+        b0.puse(variable("x")); // If on Block 0
 
         // x = x + 1
-        b1.cuse(1);
-        b1.def(1);
+        b1.cuse(variable("x"));
+        b1.def(variable("x"));
 
         // x = x + 1
-        b2.cuse(1);
-        b2.def(1);
+        b2.cuse(variable("x"));
+        b2.def(variable("x"));
+    }
+
+    public Graph<Block> getGraph() {
+        return graph;
+    }
+
+    public int variable(final String name) {
+        return variables.get(name);
+    }
+
+    public int numOfVariables() {
+        return variables.size();
     }
 
 }

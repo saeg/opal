@@ -43,7 +43,7 @@ public class TestNextOddProgramDuasShould extends ANextOddProgram {
 
     @Before
     public void init() {
-        duas = new DepthFirstDuaAnalyzer().analyze(program, variables.size());
+        duas = new DepthFirstDuaAnalyzer().analyze(getGraph(), numOfVariables());
     }
 
     @Test
@@ -53,32 +53,27 @@ public class TestNextOddProgramDuasShould extends ANextOddProgram {
 
     @Test
     public void haveAnDefinitionAt0AndUseAt1OfVariableX() {
-        final int var = variables.get("x");
-        Assert.assertTrue(contains(cdua(0, 1, var), duas));
+        Assert.assertTrue(contains(cdua(0, 1, variable("x")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt1AndUseAt2OfVariableX() {
-        final int var = variables.get("x");
-        Assert.assertTrue(contains(cdua(1, 2, var), duas));
+        Assert.assertTrue(contains(cdua(1, 2, variable("x")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt0AndUseAt2OfVariableX() {
-        final int var = variables.get("x");
-        Assert.assertTrue(contains(cdua(0, 2, var), duas));
+        Assert.assertTrue(contains(cdua(0, 2, variable("x")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt0AndUseAt0To2OfVariableX() {
-        final int var = variables.get("x");
-        Assert.assertTrue(contains(pdua(0, 0, 2, var), duas));
+        Assert.assertTrue(contains(pdua(0, 0, 2, variable("x")), duas));
     }
 
     @Test
     public void haveAnDefinitionAt0AndUseAt0To1OfVariableX() {
-        final int var = variables.get("x");
-        Assert.assertTrue(contains(pdua(0, 0, 1, var), duas));
+        Assert.assertTrue(contains(pdua(0, 0, 1, variable("x")), duas));
     }
 
 }
