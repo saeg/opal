@@ -40,11 +40,13 @@ public class UseTest {
     public void testCastPUse() {
         final Use use = new PUse(0, 0);
         Exception exception = null;
+        PUse puse = null;
         try {
-            use.puse();
+            puse = use.puse();
         } catch (final ClassCastException e) {
             exception = e;
         }
+        Assert.assertNotNull(puse);
         Assert.assertNull(exception);
     }
 
@@ -52,11 +54,13 @@ public class UseTest {
     public void testCastCUse() {
         final Use use = new CUse(0);
         Exception exception = null;
+        CUse cuse = null;
         try {
-            use.cuse();
+            cuse = use.cuse();
         } catch (final ClassCastException e) {
             exception = e;
         }
+        Assert.assertNotNull(cuse);
         Assert.assertNull(exception);
     }
 
